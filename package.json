@@ -1,14 +1,15 @@
 {
-  "private": true,
-  "name": "astexplorer-go",
-  "version": "1.1.0",
+  "private": false,
+  "name": "steve-astexplorer-go",
+  "version": "1.7.0",
   "module": "index.js",
   "main": "index.js",
-  "author": "DanSnow <dododavid006@gmail.com>",
+  "author": "stevenacoffman <gears@umich.edu>",
   "license": "MIT",
+  "files": ["*"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/DanSnow/astexplorer-go"
+    "url": "https://github.com/StevenACoffman/astexplorer-go"
   },
   "scripts": {
     "build": "tsx scripts/build.mts",
