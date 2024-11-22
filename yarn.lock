@@ -696,16 +696,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astexplorer-go@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "astexplorer-go@workspace:."
-  dependencies:
-    tsx: "npm:^4.19.2"
-    vitest: "npm:^2.1.5"
-    zx: "npm:^8.2.2"
-  languageName: unknown
-  linkType: soft
-
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -1737,6 +1727,16 @@ __metadata:
   checksum: 10/034176196cfcaaab16dbdd96fc9e925a9544799fb6dc5a3e36fe43270f3a287c7f779d785b89edaf22cef2b5f1dcada2aae67430b8602e785ee74bdb3f671768
   languageName: node
   linkType: hard
+
+"steve-astexplorer-go@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "steve-astexplorer-go@workspace:."
+  dependencies:
+    tsx: "npm:^4.19.2"
+    vitest: "npm:^2.1.5"
+    zx: "npm:^8.2.2"
+  languageName: unknown
+  linkType: soft
 
 "string-width-cjs@npm:string-width@^4.2.0, string-width@npm:^4.1.0":
   version: 4.2.3

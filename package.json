@@ -1,12 +1,16 @@
 {
-  "private": false,
   "name": "steve-astexplorer-go",
   "version": "1.8.0",
   "module": "index.js",
   "main": "index.js",
   "author": "stevenacoffman <gears@umich.edu>",
   "license": "MIT",
-  "files": ["*.js*", "*.wasm", "yarn.lock", ".yarnrc.yml"],
+  "files": [
+    "*.js*",
+    "*.wasm",
+    "yarn.lock",
+    ".yarnrc.yml"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/StevenACoffman/astexplorer-go"

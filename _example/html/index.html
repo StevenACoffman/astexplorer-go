@@ -1,0 +1,66 @@
+<!doctype html>
+<!--
+Copyright 2018 The Go Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Go wasm</title>
+</head>
+
+<body>
+	<!--
+	Add the following polyfill for Microsoft Edge 17/18 support:
+	<script src="https://cdn.jsdelivr.net/npm/text-encoding@0.7.0/lib/encoding.min.js"></script>
+	(see https://caniuse.com/#feat=textencoder)
+	-->
+	<script src="wasm_exec.js"></script>
+	<script>
+		if (!WebAssembly.instantiateStreaming) { // polyfill
+			WebAssembly.instantiateStreaming = async (resp, importObject) => {
+				const source = await (await resp).arrayBuffer();
+				return await WebAssembly.instantiate(source, importObject);
+			};
+		}
+		function parseFile (code) {
+			return JSON.parse(globalThis['__GO_PARSE_FILE__'](code))
+		}
+		const codeToParse = `// from https://go.dev/doc/tutorial/generics
+package main
+
+// SumIntsOrFloats sums the values of map m. It supports both int64 and float64
+// as types for map values.
+func SumIntsOrFloats[K comparable, V int64 | float64](m map[K]V) V {
+	var s V
+	for _, v := range m {
+		s += v
+	}
+	return s
+}
+`
+		;(async () => {
+		const go = new Go();
+		let mod, inst;
+		const moduleBytes = fetch("./parser.wasm")
+		await WebAssembly.instantiateStreaming(moduleBytes, go.importObject).then((result) => {
+			mod = result.module;	
+			inst = result.instance;
+			document.getElementById("runButton").disabled = false;
+		}).catch((err) => {
+			console.error(err);
+		});
+		await go.run(inst);
+		console.log(mod)
+		console.log(parseFile(codeToParse));
+		await init();
+		inst = await WebAssembly.instantiate(mod, go.importObject); // reset instance
+			})()
+	</script>
+
+	<button onClick="console.log(parseFile(codeToParse));" id="runButton" disabled>Run</button>
+</body>
+
+</html>
