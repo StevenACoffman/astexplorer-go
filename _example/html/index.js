@@ -1,6 +1,6 @@
 let _init = async function () {
   const exports = await import('./parser.wasm')
-  window._go.run({exports})
+  globalThis._go.run({exports})
 }
 
 export async function init() {
@@ -10,7 +10,6 @@ export async function init() {
   }
 }
 
-
 export function parseFile (code) {
-  return JSON.parse(window.__GO_PARSE_FILE__(code))
+  return JSON.parse(globalThis.__GO_PARSE_FILE__(code))
 }

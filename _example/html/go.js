@@ -1,7 +1,7 @@
-await import('./wasm_exec')
+require('./wasm_exec')
 
-window._go = new Go();
-window._go.argv = [];
-window._go.env = [];
-window._go.exit = () => console.log('EXIT CALLED');
-module.exports = window._go.importObject.go;
+globalThis._go = new Go();
+globalThis._go.argv = [];
+globalThis._go.env = [];
+globalThis._go.exit = () => console.log('EXIT CALLED');
+module.exports = globalThis._go.importObject.gojs;
